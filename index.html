@@ -3,42 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>권동훈: 제약 AI 비전 마인드맵</title>
+    <title>권동훈: 제약 AI 비전 맵</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&display=swap');
         body { font-family: 'Pretendard', sans-serif; background-color: #020617; color: #e2e8f0; margin: 0; overflow-x: hidden; }
-        #canvas-container { width: 100%; height: 50vh; background: #020617; position: relative; border-bottom: 1px solid #1e293b; }
-        .detail-section { padding: 30px; max-width: 900px; margin: 0 auto; min-height: 40vh; }
-        .info-card { background: #0f172a; border: 1px solid #38bdf8; border-radius: 16px; padding: 25px; display: none; animation: fadeIn 0.4s ease; }
+        #canvas-container { width: 100%; height: 55vh; background: #020617; position: relative; border-bottom: 1px solid #1e293b; touch-action: none; }
+        .detail-section { padding: 30px; max-width: 900px; margin: 0 auto; min-height: 45vh; }
+        .info-card { background: #0f172a; border: 1px solid #38bdf8; border-radius: 16px; padding: 25px; display: none; animation: fadeIn 0.4s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .welcome-msg { text-align: center; color: #94a3b8; margin-top: 50px; font-style: italic; }
+        .welcome-msg { text-align: center; color: #94a3b8; margin-top: 40px; border: 1px dashed #334155; padding: 30px; border-radius: 15px; }
     </style>
 </head>
 <body>
 
-    <header class="p-6 text-center border-b border-slate-800">
-        <h1 class="text-2xl font-bold text-sky-400">Kwon Dong-Hoon: Vision Mind-Map</h1>
-        <p class="text-slate-500 text-xs mt-1">마인드맵 노드를 클릭하여 상세 행동계획을 확인하세요</p>
+    <header class="p-6 text-center border-b border-slate-800 bg-slate-900/50">
+        <h1 class="text-2xl font-bold text-sky-400">Kwon Dong-Hoon: Pharma AI Vision</h1>
+        <p class="text-slate-500 text-xs mt-1 tracking-widest uppercase italic">National AI Action Plan 2026-2028 based Roadmap</p>
     </header>
 
     <div id="canvas-container"></div>
 
     <div class="detail-section">
-        <div id="welcome" class="welcome-msg text-lg">
-            위의 마인드맵에서 관심 있는 주제를 선택해 주세요. <br>
-            <span class="text-sm italic font-normal text-slate-600">(교수님, 각 노드를 클릭하면 관련 법규 및 전략이 표시됩니다.)</span>
+        <div id="welcome" class="welcome-msg">
+            <p class="text-lg mb-2">💡 마인드맵의 각 노드를 클릭해 주세요.</p>
+            <p class="text-sm font-normal text-slate-500 italic">교수님, 각 분야를 클릭하시면 국가 행동계획 원문과 <br>제약공학과 권동훈의 맞춤형 창업 전략을 확인하실 수 있습니다.</p>
         </div>
 
         <div id="info-card" class="info-card">
-            <h2 id="info-title" class="text-2xl font-bold text-sky-400 mb-4"></h2>
-            <div class="mb-6 p-4 bg-slate-900 rounded-lg border-l-4 border-slate-500">
-                <p class="text-slate-500 text-xs mb-2 font-bold uppercase tracking-widest">문서 발췌 원문</p>
-                <p id="info-original" class="text-slate-300 italic leading-relaxed"></p>
+            <div id="info-tag" class="inline-block px-3 py-1 rounded-full text-xs font-bold mb-4"></div>
+            <h2 id="info-title" class="text-2xl font-bold text-sky-400 mb-6"></h2>
+            
+            <div class="mb-8 p-5 bg-slate-900/80 rounded-xl border-l-4 border-slate-600">
+                <p class="text-slate-500 text-xs mb-3 font-bold uppercase tracking-widest">발췌 원문 (Original Text)</p>
+                <p id="info-original" class="text-slate-300 italic leading-relaxed text-base"></p>
             </div>
-            <div class="p-4 bg-sky-900/20 rounded-lg border-l-4 border-sky-500">
-                <p class="text-sky-400 text-xs mb-2 font-bold uppercase tracking-widest">AI 요약: 동훈 님을 위한 맞춤 전략</p>
+            
+            <div class="p-5 bg-sky-900/30 rounded-xl border-l-4 border-sky-500">
+                <p class="text-sky-400 text-xs mb-3 font-bold uppercase tracking-widest">AI 요약: 권동훈을 위한 맞춤 전략</p>
                 <p id="info-summary" class="text-slate-100 text-lg leading-relaxed font-medium"></p>
             </div>
         </div>
@@ -47,32 +50,65 @@
 <script>
 let nodes = [];
 let connections = [];
+
+// 내용 풍부화 버전 데이터
 const nodeData = {
-    'edu1': { title: "AI 연구 동료", original: "“수학·물리학·화학·생명과학 등 모든 기초 과학 분야에서 AI와의 융합을 통해 새로운 혁신의 길이 열리고 있다. ‘AI 연구 동료’는 연구 전 과정을 지원하는 통합형 과학 도구이다.”", summary: "부족한 기초 과학 지식을 기술로 보완합니다. 연구 기획에 집중할 수 있는 오너의 핵심 도구입니다." },
-    'edu2': { title: "과학 AI 모델", original: "“바이오·화학 분야의 난제를 해결하는 한국형 ‘과학 파운데이션 모델’을 국가 과학 인프라로 구축하여 신소재 연구에 적용함으로써 혁신을 촉발한다.”", summary: "국가 인프라를 활용하여 원료 배합 결과를 미리 예측, 초기 연구 비용을 획기적으로 줄입니다." },
-    'biz1': { title: "컴퓨팅 바우처", original: "“AI 창업 기업과 중소기업을 대상으로 고성능 컴퓨팅 자원 활용 바우처를 제공하여 인프라 구축 비용 부담 없이 서비스를 개발하도록 지원한다.”", summary: "창업 초기 가장 큰 부담인 서버 비용을 정부 지원으로 해결하여 경영 리스크를 최소화합니다." },
-    'biz2': { title: "AI 신뢰성 인증", original: "“중소기업 AI 제품의 신뢰성을 보장하기 위해 ‘AI 신뢰성 인증 제도’를 활성화하고 인증 획득 비용과 컨설팅을 지원한다.”", summary: "신생 브랜드의 알고리즘 공신력을 국가가 보증해주어 고객 신뢰를 단숨에 확보하는 전략입니다." },
-    'biz3': { title: "보건의료 데이터", original: "“보건의료 전 과정을 포함하는 시계열 진료데이터와 공공데이터를 결합하여 빅데이터 플랫폼 활용 방안을 ’26년 1분기까지 마련한다.”", summary: "데이터에 기반한 정밀한 영양제 및 화장품 레시피를 기획하여 시장 경쟁력을 갖춥니다." },
-    'life1': { title: "군 전문성 심화", original: "“군 복무가 경력 단절이 아닌 전문성 심화의 기회가 되도록 국방 AI 교육과정을 확대하여 전역 후 핵심 인력으로 활약할 인재를 양성한다.”", summary: "군 입대 시기에도 AI 역량을 계속 키워나가 사업 연속성을 유지하는 로드맵입니다." },
-    'risk1': { title: "보안/계약 지원", original: "“보안 솔루션 구독료를 지원하고, 하도급계약 공정화 지원 AI 플랫폼을 통해 불공정 조항 탐지를 지원한다.”", summary: "오너로서 겪을 수 있는 사기 계약과 기술 유출을 AI 방어막으로 사전에 차단합니다." }
+    'edu1': { 
+        tag: "학업 보완 (Academic)", col: "#fb7185", title: "AI 연구 동료 활용", 
+        original: "“수학·물리학·화학·생명과학 등 모든 기초 과학 분야에서 AI와의 융합을 통해 새로운 혁신의 길이 열리고 있다. ‘AI 연구 동료’는 연구자의 가설 생성·실험 설계·데이터 분석·결과 보고 등 연구 전 과정을 지원하는 통합형 과학 도구로서, 연구자의 생산성과 창의성을 극대화할 수 있는 잠재력을 지닌다.”", 
+        summary: "동훈 님의 수학(5~6등급) 및 화학 노베이스 공백을 메워줄 핵심 도구입니다. 복잡한 계산이나 실험 설계는 AI에게 맡기고, 오너로서 아이디어를 기획하고 방향을 설정하는 데 집중할 수 있는 환경을 제공합니다." 
+    },
+    'edu2': { 
+        tag: "학업 보완 (Academic)", col: "#fb7185", title: "과학 AI 파운데이션 모델", 
+        original: "“학문적·산업적 파급력이 높은 바이오·재료·화학 분야의 난제를 해결하는 한국형 ‘과학 파운데이션 모델’을 국가 과학 인프라로 구축한다. 고체·액체상의 모든 물질과 신소재 연구에 적용되어 혁신을 촉발할 수 있다.”", 
+        summary: "정부가 구축하는 국가 인프라를 활용해 직접적인 대규모 실험 없이도 신소재나 약물 성분 배합 결과를 예측할 수 있습니다. 자본이 부족한 초기 창업 시기에 연구 비용을 획기적으로 줄여주는 기술적 돌파구입니다." 
+    },
+    'biz1': { 
+        tag: "창업 지원 (Support)", col: "#34d399", title: "컴퓨팅 자원 바우처", 
+        original: "“AI 창업 기업과 중소기업을 대상으로 고성능 컴퓨팅 자원(GPU 등) 활용 바우처를 제공하여, 인프라 구축 비용 부담 없이 AI 모델을 학습하고 서비스를 개발할 수 있도록 지원 규모를 확대한다.”", 
+        summary: "제약 AI나 맞춤형 화장품 알고리즘 개발에 필수적인 고성능 서버를 국가 지원으로 무료 활용합니다. 인프라 구축 비용을 0원에 가깝게 줄여 초기 자본 리스크를 최소화할 수 있습니다." 
+    },
+    'biz2': { 
+        tag: "창업 지원 (Support)", col: "#34d399", title: "AI 신뢰성 인증 제도", 
+        original: "“중소기업이 개발한 AI 기반 제품과 서비스의 신뢰성을 보장하기 위해 ‘AI 신뢰성 인증 제도’를 활성화하고, 인증 획득에 필요한 비용과 컨설팅을 지원한다.”", 
+        summary: "동훈 님의 브랜드가 대기업과 경쟁할 수 있도록 '국가 공인 신뢰도'를 확보하는 전략입니다. AI 분석 결과의 정확성을 정부가 인증해주므로 초기 고객의 신뢰를 단숨에 얻을 수 있습니다." 
+    },
+    'biz3': { 
+        tag: "창업 전략 (Strategy)", col: "#34d399", title: "보건의료 데이터 활용", 
+        original: "“특화 파운데이션 AI모델 기반의 기술개발은 대량, 양질의 보건의료 전 과정을 포함하는 시계열 진료데이터와 공공데이터, 개인 유래 건강 데이터의 결합이 필수적이므로 보건의료 빅데이터 플랫폼 활용 방안을 ’26년 1분기까지 마련한다.”", 
+        summary: "실제 임상/진료 데이터를 바탕으로 특정 타겟(수험생, 노년층 등)에 딱 맞는 효능 중심의 제품 기획이 가능해집니다. 데이터 기반의 과학적 근거를 가진 건강기능식품 레시피를 개발합니다." 
+    },
+    'life1': { 
+        tag: "미래/생활 (Future)", col: "#fbbf24", title: "군 복무 전문성 심화", 
+        original: "“군 복무가 경력 단절이 아닌 전문성 심화의 기회가 되도록 설계함으로써... 국방 AI 교육과정 운영 대학 확대, 국방 AI 대학원 지정... 전역 후 민간 기업이나 국가 연구기관의 핵심 인력으로 활약할 고급 AI 인재를 양성한다.”", 
+        summary: "군 생활을 제약 AI 역량 강화의 기회로 삼습니다. 국방부의 전문 AI 교육을 이수하여 전공 지식을 유지하고, 전역 후 바로 창업 시장의 핵심 인재로 복귀할 수 있는 연속성을 확보합니다." 
+    },
+    'risk1': { 
+        tag: "오너 리스크 (Security)", col: "#0ea5e9", title: "보안 및 공정계약 지원", 
+        original: "“중소기업 대상 AI 보안 솔루션 구독료 지원 사업을 추진하고, ‘하도급계약 공정화 지원 AI 플랫폼’을 구축해 하도급계약서 초안 작성과 불공정 조항 탐지를 지원한다.”", 
+        summary: "비싼 법률 자문 비용 없이도 AI가 계약서의 독소 조항을 잡아내어 동훈 님의 회사를 보호합니다. 또한 보안 바우처를 통해 소중한 제품 레시피와 기술 유출을 원천 차단합니다." 
+    }
 };
 
 function setup() {
-    let canvas = createCanvas(windowWidth, windowHeight * 0.5);
+    let canvas = createCanvas(windowWidth, windowHeight * 0.55);
     canvas.parent('canvas-container');
     
-    // 중앙: 권동훈
-    let center = new Node(width/2, height/2, "제약 오너\n권동훈", "#38bdf8", 85, null);
+    // 중앙: 제약공학과 권동훈 (명칭 수정)
+    let center = new Node(width/2, height/2, "제약공학과\n권동훈", "#38bdf8", 90, null);
     nodes.push(center);
 
-    // 각 카테고리별 배치
-    nodes.push(new Node(width/2-250, height/2-60, "AI 연구동료", "#fb7185", 60, 'edu1'));
-    nodes.push(new Node(width/2-180, height/2-140, "과학 AI 모델", "#fb7185", 60, 'edu2'));
-    nodes.push(new Node(width/2+150, height/2-140, "컴퓨팅 지원", "#34d399", 60, 'biz1'));
-    nodes.push(new Node(width/2+250, height/2-60, "신뢰성 인증", "#34d399", 60, 'biz2'));
-    nodes.push(new Node(width/2+180, height/2+80, "의료 데이터", "#34d399", 60, 'biz3'));
-    nodes.push(new Node(width/2-150, height/2+120, "군 전문성", "#fbbf24", 60, 'life1'));
-    nodes.push(new Node(width/2, height/2+160, "보안/계약", "#0ea5e9", 60, 'risk1'));
+    // 노드 위치를 화면 안쪽으로 더 좁혀서 가림 방지 (Margin 확보)
+    let mw = width * 0.15; // 좌우 마진
+    let mh = height * 0.1; // 상하 마진
+
+    nodes.push(new Node(mw + 50, height/2 - 50, "AI 연구동료", "#fb7185", 65, 'edu1'));
+    nodes.push(new Node(width/2 - 100, mh + 50, "과학 AI 모델", "#fb7185", 65, 'edu2'));
+    nodes.push(new Node(width - mw - 50, height/2 - 100, "컴퓨팅 지원", "#34d399", 65, 'biz1'));
+    nodes.push(new Node(width - mw - 80, height/2 + 80, "신뢰성 인증", "#34d399", 65, 'biz2'));
+    nodes.push(new Node(width/2 + 150, height - mh - 80, "의료 데이터", "#34d399", 65, 'biz3'));
+    nodes.push(new Node(mw + 80, height/2 + 100, "군 전문성", "#fbbf24", 65, 'life1'));
+    nodes.push(new Node(width/2, height - mh - 30, "보안/계약", "#0ea5e9", 65, 'risk1'));
 
     for(let i=1; i<nodes.length; i++) connections.push([center, nodes[i]]);
 }
@@ -80,6 +116,7 @@ function setup() {
 function draw() {
     background(2, 6, 23);
     
+    // 연결선
     stroke(30, 41, 59); strokeWeight(2);
     for(let c of connections) line(c[0].x, c[0].y, c[1].x, c[1].y);
     
@@ -89,27 +126,31 @@ function draw() {
 class Node {
     constructor(x, y, label, col, sz, dataKey) {
         this.x = x; this.y = y; this.label = label; this.col = col; this.sz = sz; this.dataKey = dataKey;
-        this.baseX = x; this.baseY = y; this.targetSz = sz;
+        this.baseX = x; this.baseY = y;
+        this.angle = random(TWO_PI);
     }
     update() {
-        this.x = this.baseX + sin(frameCount*0.02 + this.sz)*8;
-        this.y = this.baseY + cos(frameCount*0.02 + this.sz)*8;
+        // 화면 밖으로 나가지 않게 움직임 범위를 base 위치 근처로 제한
+        this.x = this.baseX + sin(frameCount * 0.02 + this.angle) * 10;
+        this.y = this.baseY + cos(frameCount * 0.02 + this.angle) * 10;
     }
     display() {
         let d = dist(mouseX, mouseY, this.x, this.y);
-        let isHover = d < this.sz/2;
+        let touchD = (touches.length > 0) ? dist(touches[0].x, touches[0].y, this.x, this.y) : 999;
+        let isHover = d < this.sz/2 || touchD < this.sz/2;
         
         if(isHover) {
             cursor(HAND);
-            this.sz = lerp(this.sz, this.targetSz * 1.2, 0.2);
-            if(mouseIsPressed && this.dataKey) showInfo(this.dataKey);
+            fill(this.col); stroke(255, 150); strokeWeight(3);
+            if(mouseIsPressed || touches.length > 0) {
+                if(this.dataKey) showInfo(this.dataKey);
+            }
         } else {
-            this.sz = lerp(this.sz, this.targetSz, 0.2);
+            noStroke(); fill(this.col);
         }
         
-        noStroke(); fill(this.col);
         ellipse(this.x, this.y, this.sz, this.sz);
-        fill(255); textSize(this.sz*0.22); textAlign(CENTER, CENTER); textStyle(BOLD);
+        fill(255); noStroke(); textSize(this.sz*0.22); textAlign(CENTER, CENTER); textStyle(BOLD);
         text(this.label, this.x, this.y);
     }
 }
@@ -118,12 +159,21 @@ function showInfo(key) {
     const item = nodeData[key];
     document.getElementById('welcome').style.display = 'none';
     document.getElementById('info-card').style.display = 'block';
+    
+    const tagEl = document.getElementById('info-tag');
+    tagEl.innerText = item.tag;
+    tagEl.style.backgroundColor = item.col;
+    tagEl.style.color = "#020617";
+    
     document.getElementById('info-title').innerText = item.title;
     document.getElementById('info-original').innerText = item.original;
     document.getElementById('info-summary').innerText = item.summary;
+    
+    // 클릭 시 해당 영역으로 부드럽게 스크롤
+    document.getElementById('info-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function windowResized() { resizeCanvas(windowWidth, windowHeight * 0.5); }
+function windowResized() { resizeCanvas(windowWidth, windowHeight * 0.55); }
 </script>
 </body>
 </html>
