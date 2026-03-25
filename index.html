@@ -2,141 +2,128 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>권동훈: 제약 AI 창업 행동계획</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>권동훈: 제약 AI 비전 마인드맵</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&display=swap');
-        body { font-family: 'Pretendard', sans-serif; background-color: #020617; color: #e2e8f0; }
-        .card:hover .hover-text { display: block; }
-        .hover-text { display: none; }
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 50; overflow-y: auto; padding: 20px; }
-        .modal-content { background: #1e293b; max-width: 800px; margin: 40px auto; padding: 30px; border-radius: 16px; border: 1px solid #38bdf8; box-shadow: 0 0 30px rgba(56,189,248,0.2); }
+        body { font-family: 'Pretendard', sans-serif; background-color: #020617; color: #e2e8f0; margin: 0; overflow-x: hidden; }
+        #canvas-container { width: 100%; height: 50vh; background: #020617; position: relative; border-bottom: 1px solid #1e293b; }
+        .detail-section { padding: 30px; max-width: 900px; margin: 0 auto; min-height: 40vh; }
+        .info-card { background: #0f172a; border: 1px solid #38bdf8; border-radius: 16px; padding: 25px; display: none; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .welcome-msg { text-align: center; color: #94a3b8; margin-top: 50px; font-style: italic; }
     </style>
 </head>
-<body class="p-6">
+<body>
 
-    <header class="mb-10 text-center">
-        <h1 class="text-3xl font-bold text-sky-400 mb-2">KWON DONG-HOON: Pharma AI Vision</h1>
-        <p class="text-slate-400 text-sm">대한민국 인공지능 행동계획 기반 청년 창업 및 학업 로드맵</p>
+    <header class="p-6 text-center border-b border-slate-800">
+        <h1 class="text-2xl font-bold text-sky-400">Kwon Dong-Hoon: Vision Mind-Map</h1>
+        <p class="text-slate-500 text-xs mt-1">마인드맵 노드를 클릭하여 상세 행동계획을 확인하세요</p>
     </header>
 
-    <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-        <div class="card bg-slate-800/50 p-6 border border-slate-700 rounded-xl cursor-pointer hover:border-rose-500 transition-all" onclick="openModal('edu1')">
-            <span class="text-xs font-bold text-rose-400 uppercase">Academic</span>
-            <h3 class="text-xl font-bold mt-2">AI 연구 동료 활용</h3>
-            <p class="hover-text mt-4 text-sm text-slate-300">과학적 기초 공백을 메우는 파트너 (클릭 상세)</p>
+    <div id="canvas-container"></div>
+
+    <div class="detail-section">
+        <div id="welcome" class="welcome-msg text-lg">
+            위의 마인드맵에서 관심 있는 주제를 선택해 주세요. <br>
+            <span class="text-sm italic font-normal text-slate-600">(교수님, 각 노드를 클릭하면 관련 법규 및 전략이 표시됩니다.)</span>
         </div>
 
-        <div class="card bg-slate-800/50 p-6 border border-slate-700 rounded-xl cursor-pointer hover:border-rose-500 transition-all" onclick="openModal('edu2')">
-            <span class="text-xs font-bold text-rose-400 uppercase">Academic</span>
-            <h3 class="text-xl font-bold mt-2">과학 파운데이션 모델</h3>
-            <p class="hover-text mt-4 text-sm text-slate-300">국가 인프라 기반 물질 연구 (클릭 상세)</p>
-        </div>
-
-        <div class="card bg-slate-800/50 p-6 border border-slate-700 rounded-xl cursor-pointer hover:border-emerald-500 transition-all" onclick="openModal('biz1')">
-            <span class="text-xs font-bold text-emerald-400 uppercase">Startup Support</span>
-            <h3 class="text-xl font-bold mt-2">컴퓨팅 자원 바우처</h3>
-            <p class="hover-text mt-4 text-sm text-slate-300">인프라 구축 비용 0원 도전 (클릭 상세)</p>
-        </div>
-
-        <div class="card bg-slate-800/50 p-6 border border-slate-700 rounded-xl cursor-pointer hover:border-emerald-500 transition-all" onclick="openModal('biz2')">
-            <span class="text-xs font-bold text-emerald-400 uppercase">Startup Support</span>
-            <h3 class="text-xl font-bold mt-2">AI 신뢰성 인증 제도</h3>
-            <p class="hover-text mt-4 text-sm text-slate-300">제품의 공신력 국가가 보증 (클릭 상세)</p>
-        </div>
-
-        <div class="card bg-slate-800/50 p-6 border border-slate-700 rounded-xl cursor-pointer hover:border-emerald-500 transition-all" onclick="openModal('biz3')">
-            <span class="text-xs font-bold text-emerald-400 uppercase">Strategy</span>
-            <h3 class="text-xl font-bold mt-2">보건의료 데이터 활용</h3>
-            <p class="hover-text mt-4 text-sm text-slate-300">데이터 기반 맞춤형 건기식 (클릭 상세)</p>
-        </div>
-
-        <div class="card bg-slate-800/50 p-6 border border-slate-700 rounded-xl cursor-pointer hover:border-amber-500 transition-all" onclick="openModal('life1')">
-            <span class="text-xs font-bold text-amber-400 uppercase">Future</span>
-            <h3 class="text-xl font-bold mt-2">군 복무 전문성 심화</h3>
-            <p class="hover-text mt-4 text-sm text-slate-300">경력 단절 없는 군 생활 (클릭 상세)</p>
-        </div>
-
-        <div class="card bg-slate-800/50 p-6 border border-slate-700 rounded-xl cursor-pointer hover:border-sky-500 transition-all" onclick="openModal('risk1')">
-            <span class="text-xs font-bold text-sky-400 uppercase">Risk Care</span>
-            <h3 class="text-xl font-bold mt-2">공정계약 & 보안 지원</h3>
-            <p class="hover-text mt-4 text-sm text-slate-300">AI를 통한 법률/보안 방어 (클릭 상세)</p>
-        </div>
-    </main>
-
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <button class="text-slate-400 hover:text-white mb-6 font-bold" onclick="closeModal()">✕ 닫기</button>
-            <div id="modal-body"></div>
+        <div id="info-card" class="info-card">
+            <h2 id="info-title" class="text-2xl font-bold text-sky-400 mb-4"></h2>
+            <div class="mb-6 p-4 bg-slate-900 rounded-lg border-l-4 border-slate-500">
+                <p class="text-slate-500 text-xs mb-2 font-bold uppercase tracking-widest">문서 발췌 원문</p>
+                <p id="info-original" class="text-slate-300 italic leading-relaxed"></p>
+            </div>
+            <div class="p-4 bg-sky-900/20 rounded-lg border-l-4 border-sky-500">
+                <p class="text-sky-400 text-xs mb-2 font-bold uppercase tracking-widest">AI 요약: 동훈 님을 위한 맞춤 전략</p>
+                <p id="info-summary" class="text-slate-100 text-lg leading-relaxed font-medium"></p>
+            </div>
         </div>
     </div>
 
-    <script>
-        const data = {
-            edu1: {
-                title: "AI 연구 동료 활용",
-                original: "“수학·물리학·화학·생명과학 등 모든 기초 과학 분야에서 AI와의 융합을 통해 새로운 혁신의 길이 열리고 있다. ‘AI 연구 동료’는 연구자의 가설 생성·실험 설계·데이터 분석·결과 보고 등 연구 전 과정을 지원하는 통합형 과학 도구이다.”",
-                summary: "동훈 님의 수학/화학 기초 공백을 메워주는 핵심 파트너입니다. 복잡한 수식이나 분자 구조 분석은 AI에게 맡기고, 오너로서의 창의적 기획에만 집중할 수 있게 합니다."
-            },
-            edu2: {
-                title: "과학 AI 파운데이션 모델",
-                original: "“바이오·재료·화학 분야의 난제를 해결하는 한국형 ‘과학 파운데이션 모델’을 국가 과학 인프라로 구축하여 신소재 연구에 적용함으로써 혁신을 촉발한다.”",
-                summary: "정부가 구축한 인프라를 통해 값비싼 실험 장비 없이도 가상 환경에서 성분 배합 결과를 예측할 수 있습니다. 전공 공부의 한계를 기술로 돌파하는 전략입니다."
-            },
-            biz1: {
-                title: "컴퓨팅 자원 바우처 지원",
-                original: "“AI 창업 기업과 중소기업을 대상으로 고성능 컴퓨팅 자원(GPU 등) 활용 바우처를 제공하여, 인프라 구축 비용 부담 없이 서비스를 개발할 수 있도록 지원 규모를 확대한다.”",
-                summary: "초기 창업 시 가장 큰 비용인 서버 구축비를 정부가 대신 내줍니다. 2026년부터 확대되는 이 바우처를 통해 고성능 AI 헬스케어 서비스를 자본금 걱정 없이 개발할 수 있습니다."
-            },
-            biz2: {
-                title: "AI 신뢰성 인증 및 컨설팅",
-                original: "“중소기업이 개발한 AI 제품의 신뢰성을 보장하기 위해 ‘AI 신뢰성 인증 제도’를 활성화하고, 인증 획득에 필요한 비용과 컨설팅을 지원한다.”",
-                summary: "신생 브랜드의 최대 약점인 '신뢰도'를 국가 인증으로 해결합니다. 동훈 님의 제품이 AI 기반으로 정확하게 분석되었다는 공신력을 얻어 대기업과 당당히 경쟁할 수 있습니다."
-            },
-            biz3: {
-                title: "보건의료 데이터 활용 플랫폼",
-                original: "“보건의료 전 과정을 포함하는 시계열 진료데이터와 공공데이터, 개인 유래 건강 데이터의 결합이 필수적이므로 보건의료 빅데이터 플랫폼 활용 방안을 마련한다.”",
-                summary: "단순한 영양제가 아니라 실제 데이터에 근거한 맞춤형 건기식을 기획할 수 있는 자산입니다. '26년 1분기 개방되는 데이터를 선점하여 독보적인 제품을 개발하세요."
-            },
-            life1: {
-                title: "군 복무 전문성 심화 기회",
-                original: "“군 복무가 경력 단절이 아닌 전문성 심화의 기회가 되도록 국방 AI 교육과정 운영 대학 확대, 국방 AI 대학원 지정 등을 통해 고급 AI 인재를 양성한다.”",
-                summary: "군대 가는 시간이 아깝지 않게 됩니다. 국방부의 AI 특무나 교육 과정을 통해 군 생활 중에도 제약 AI 역량을 쌓아, 전역 후 바로 창업 시장에 복귀할 수 있는 발판을 마련합니다."
-            },
-            risk1: {
-                title: "보안 솔루션 및 공정계약 지원",
-                original: "“보안 솔루션 구독료를 지원하고, ‘하도급계약 공정화 지원 AI 플랫폼’을 통해 하도급계약서 초안 작성과 불공정 조항 탐지를 지원한다.”",
-                summary: "초보 사장님이 겪기 쉬운 사기 계약과 기술 유출을 막아줍니다. AI가 계약서의 독소 조항을 찾아내고, 소중한 제품 레시피를 보안 바우처로 안전하게 지켜줍니다."
-            }
-        };
+<script>
+let nodes = [];
+let connections = [];
+const nodeData = {
+    'edu1': { title: "AI 연구 동료", original: "“수학·물리학·화학·생명과학 등 모든 기초 과학 분야에서 AI와의 융합을 통해 새로운 혁신의 길이 열리고 있다. ‘AI 연구 동료’는 연구 전 과정을 지원하는 통합형 과학 도구이다.”", summary: "부족한 기초 과학 지식을 기술로 보완합니다. 연구 기획에 집중할 수 있는 오너의 핵심 도구입니다." },
+    'edu2': { title: "과학 AI 모델", original: "“바이오·화학 분야의 난제를 해결하는 한국형 ‘과학 파운데이션 모델’을 국가 과학 인프라로 구축하여 신소재 연구에 적용함으로써 혁신을 촉발한다.”", summary: "국가 인프라를 활용하여 원료 배합 결과를 미리 예측, 초기 연구 비용을 획기적으로 줄입니다." },
+    'biz1': { title: "컴퓨팅 바우처", original: "“AI 창업 기업과 중소기업을 대상으로 고성능 컴퓨팅 자원 활용 바우처를 제공하여 인프라 구축 비용 부담 없이 서비스를 개발하도록 지원한다.”", summary: "창업 초기 가장 큰 부담인 서버 비용을 정부 지원으로 해결하여 경영 리스크를 최소화합니다." },
+    'biz2': { title: "AI 신뢰성 인증", original: "“중소기업 AI 제품의 신뢰성을 보장하기 위해 ‘AI 신뢰성 인증 제도’를 활성화하고 인증 획득 비용과 컨설팅을 지원한다.”", summary: "신생 브랜드의 알고리즘 공신력을 국가가 보증해주어 고객 신뢰를 단숨에 확보하는 전략입니다." },
+    'biz3': { title: "보건의료 데이터", original: "“보건의료 전 과정을 포함하는 시계열 진료데이터와 공공데이터를 결합하여 빅데이터 플랫폼 활용 방안을 ’26년 1분기까지 마련한다.”", summary: "데이터에 기반한 정밀한 영양제 및 화장품 레시피를 기획하여 시장 경쟁력을 갖춥니다." },
+    'life1': { title: "군 전문성 심화", original: "“군 복무가 경력 단절이 아닌 전문성 심화의 기회가 되도록 국방 AI 교육과정을 확대하여 전역 후 핵심 인력으로 활약할 인재를 양성한다.”", summary: "군 입대 시기에도 AI 역량을 계속 키워나가 사업 연속성을 유지하는 로드맵입니다." },
+    'risk1': { title: "보안/계약 지원", original: "“보안 솔루션 구독료를 지원하고, 하도급계약 공정화 지원 AI 플랫폼을 통해 불공정 조항 탐지를 지원한다.”", summary: "오너로서 겪을 수 있는 사기 계약과 기술 유출을 AI 방어막으로 사전에 차단합니다." }
+};
 
-        function openModal(id) {
-            const item = data[id];
-            const modalBody = document.getElementById('modal-body');
-            modalBody.innerHTML = `
-                <h2 class="text-3xl font-bold text-sky-400 mb-6">${item.title}</h2>
-                <div class="mb-8 p-5 bg-slate-900/50 rounded-xl border-l-4 border-slate-500">
-                    <p class="text-slate-500 text-xs mb-3 uppercase tracking-widest font-bold">문서 발췌 원문</p>
-                    <p class="text-slate-200 italic leading-relaxed text-lg">${item.original}</p>
-                </div>
-                <div class="p-5 bg-sky-900/20 rounded-xl border-l-4 border-sky-500">
-                    <p class="text-sky-400 text-xs mb-3 uppercase tracking-widest font-bold">AI 요약: 동훈 님을 위한 청년 창업 전략</p>
-                    <p class="text-slate-100 text-xl font-medium leading-relaxed">${item.summary}</p>
-                </div>
-            `;
-            document.getElementById('modal').style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
+function setup() {
+    let canvas = createCanvas(windowWidth, windowHeight * 0.5);
+    canvas.parent('canvas-container');
+    
+    // 중앙: 권동훈
+    let center = new Node(width/2, height/2, "제약 오너\n권동훈", "#38bdf8", 85, null);
+    nodes.push(center);
 
-        function closeModal() {
-            document.getElementById('modal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
+    // 각 카테고리별 배치
+    nodes.push(new Node(width/2-250, height/2-60, "AI 연구동료", "#fb7185", 60, 'edu1'));
+    nodes.push(new Node(width/2-180, height/2-140, "과학 AI 모델", "#fb7185", 60, 'edu2'));
+    nodes.push(new Node(width/2+150, height/2-140, "컴퓨팅 지원", "#34d399", 60, 'biz1'));
+    nodes.push(new Node(width/2+250, height/2-60, "신뢰성 인증", "#34d399", 60, 'biz2'));
+    nodes.push(new Node(width/2+180, height/2+80, "의료 데이터", "#34d399", 60, 'biz3'));
+    nodes.push(new Node(width/2-150, height/2+120, "군 전문성", "#fbbf24", 60, 'life1'));
+    nodes.push(new Node(width/2, height/2+160, "보안/계약", "#0ea5e9", 60, 'risk1'));
 
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('modal')) closeModal();
+    for(let i=1; i<nodes.length; i++) connections.push([center, nodes[i]]);
+}
+
+function draw() {
+    background(2, 6, 23);
+    
+    stroke(30, 41, 59); strokeWeight(2);
+    for(let c of connections) line(c[0].x, c[0].y, c[1].x, c[1].y);
+    
+    for(let n of nodes) { n.update(); n.display(); }
+}
+
+class Node {
+    constructor(x, y, label, col, sz, dataKey) {
+        this.x = x; this.y = y; this.label = label; this.col = col; this.sz = sz; this.dataKey = dataKey;
+        this.baseX = x; this.baseY = y; this.targetSz = sz;
+    }
+    update() {
+        this.x = this.baseX + sin(frameCount*0.02 + this.sz)*8;
+        this.y = this.baseY + cos(frameCount*0.02 + this.sz)*8;
+    }
+    display() {
+        let d = dist(mouseX, mouseY, this.x, this.y);
+        let isHover = d < this.sz/2;
+        
+        if(isHover) {
+            cursor(HAND);
+            this.sz = lerp(this.sz, this.targetSz * 1.2, 0.2);
+            if(mouseIsPressed && this.dataKey) showInfo(this.dataKey);
+        } else {
+            this.sz = lerp(this.sz, this.targetSz, 0.2);
         }
-    </script>
+        
+        noStroke(); fill(this.col);
+        ellipse(this.x, this.y, this.sz, this.sz);
+        fill(255); textSize(this.sz*0.22); textAlign(CENTER, CENTER); textStyle(BOLD);
+        text(this.label, this.x, this.y);
+    }
+}
+
+function showInfo(key) {
+    const item = nodeData[key];
+    document.getElementById('welcome').style.display = 'none';
+    document.getElementById('info-card').style.display = 'block';
+    document.getElementById('info-title').innerText = item.title;
+    document.getElementById('info-original').innerText = item.original;
+    document.getElementById('info-summary').innerText = item.summary;
+}
+
+function windowResized() { resizeCanvas(windowWidth, windowHeight * 0.5); }
+</script>
 </body>
 </html>
