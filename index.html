@@ -12,8 +12,6 @@
         .hover-text { display: none; }
         .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 50; overflow-y: auto; padding: 20px; }
         .modal-content { background: #1e293b; max-width: 800px; margin: 40px auto; padding: 30px; border-radius: 16px; border: 1px solid #38bdf8; box-shadow: 0 0 30px rgba(56,189,248,0.2); }
-        .nav-chip { transition: all 0.3s ease; cursor: pointer; }
-        .nav-chip:hover { transform: translateY(-2px); background-color: #38bdf8; color: #020617; }
     </style>
 </head>
 <body class="p-6">
@@ -23,62 +21,47 @@
         <p class="text-slate-400 text-sm">대한민국 인공지능 행동계획 기반 청년 창업 및 학업 로드맵</p>
     </header>
 
-    <section class="max-w-7xl mx-auto mb-12 p-6 bg-slate-900/40 border border-slate-800 rounded-2xl">
-        <h2 class="text-xl font-bold text-white mb-4 flex items-center">
-            <span class="w-2 h-6 bg-sky-500 rounded-full mr-3"></span>
-            관심분야 (Areas of Interest)
-        </h2>
-        <div class="flex flex-wrap gap-3">
-            <div class="nav-chip px-4 py-2 rounded-full border border-rose-500/50 text-rose-400 text-sm font-semibold bg-rose-500/10" onclick="scrollToCategory('academic')"># 기초과학_공백_AI보완</div>
-            <div class="nav-chip px-4 py-2 rounded-full border border-emerald-500/50 text-emerald-400 text-sm font-semibold bg-emerald-400/10" onclick="scrollToCategory('startup')"># 맞춤형_건기식_창업</div>
-            <div class="nav-chip px-4 py-2 rounded-full border border-emerald-500/50 text-emerald-400 text-sm font-semibold bg-emerald-400/10" onclick="scrollToCategory('startup')"># K-뷰티_AI_개인화</div>
-            <div class="nav-chip px-4 py-2 rounded-full border border-amber-500/50 text-amber-400 text-sm font-semibold bg-amber-500/10" onclick="scrollToCategory('future')"># 국방_AI_경력유지</div>
-            <div class="nav-chip px-4 py-2 rounded-full border border-sky-500/50 text-sky-400 text-sm font-semibold bg-sky-500/10" onclick="scrollToCategory('risk')"># AI_보안_및_공정계약</div>
-        </div>
-        <p class="text-slate-500 text-xs mt-4">* 각 키워드를 클릭하거나 아래 카드를 선택하여 상세 행동계획을 확인하실 수 있습니다.</p>
-    </section>
-
     <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-        <div id="academic" class="card bg-slate-800/50 p-6 border border-slate-700 rounded-xl cursor-pointer hover:border-rose-500 transition-all" onclick="openModal('edu1')">
+        <div class="card bg-slate-800/50 p-6 border border-slate-700 rounded-xl cursor-pointer hover:border-rose-500 transition-all" onclick="openModal('edu1')">
             <span class="text-xs font-bold text-rose-400 uppercase">Academic</span>
             <h3 class="text-xl font-bold mt-2">AI 연구 동료 활용</h3>
-            <p class="hover-text mt-4 text-sm text-slate-300 italic">"기초 지식의 한계를 기술로 돌파" (상세보기)</p>
+            <p class="hover-text mt-4 text-sm text-slate-300">과학적 기초 공백을 메우는 파트너 (클릭 상세)</p>
         </div>
 
         <div class="card bg-slate-800/50 p-6 border border-slate-700 rounded-xl cursor-pointer hover:border-rose-500 transition-all" onclick="openModal('edu2')">
             <span class="text-xs font-bold text-rose-400 uppercase">Academic</span>
             <h3 class="text-xl font-bold mt-2">과학 파운데이션 모델</h3>
-            <p class="hover-text mt-4 text-sm text-slate-300 italic">"국가 인프라 기반 연구 최적화" (상세보기)</p>
+            <p class="hover-text mt-4 text-sm text-slate-300">국가 인프라 기반 물질 연구 (클릭 상세)</p>
         </div>
 
-        <div id="startup" class="card bg-slate-800/50 p-6 border border-slate-700 rounded-xl cursor-pointer hover:border-emerald-500 transition-all" onclick="openModal('biz1')">
+        <div class="card bg-slate-800/50 p-6 border border-slate-700 rounded-xl cursor-pointer hover:border-emerald-500 transition-all" onclick="openModal('biz1')">
             <span class="text-xs font-bold text-emerald-400 uppercase">Startup Support</span>
             <h3 class="text-xl font-bold mt-2">컴퓨팅 자원 바우처</h3>
-            <p class="hover-text mt-4 text-sm text-slate-300 italic">"인프라 비용 부담 제로화" (상세보기)</p>
+            <p class="hover-text mt-4 text-sm text-slate-300">인프라 구축 비용 0원 도전 (클릭 상세)</p>
         </div>
 
         <div class="card bg-slate-800/50 p-6 border border-slate-700 rounded-xl cursor-pointer hover:border-emerald-500 transition-all" onclick="openModal('biz2')">
             <span class="text-xs font-bold text-emerald-400 uppercase">Startup Support</span>
             <h3 class="text-xl font-bold mt-2">AI 신뢰성 인증 제도</h3>
-            <p class="hover-text mt-4 text-sm text-slate-300 italic">"브랜드 공신력 국가 보증" (상세보기)</p>
+            <p class="hover-text mt-4 text-sm text-slate-300">제품의 공신력 국가가 보증 (클릭 상세)</p>
         </div>
 
         <div class="card bg-slate-800/50 p-6 border border-slate-700 rounded-xl cursor-pointer hover:border-emerald-500 transition-all" onclick="openModal('biz3')">
             <span class="text-xs font-bold text-emerald-400 uppercase">Strategy</span>
             <h3 class="text-xl font-bold mt-2">보건의료 데이터 활용</h3>
-            <p class="hover-text mt-4 text-sm text-slate-300 italic">"데이터 기반 정밀 영양 기획" (상세보기)</p>
+            <p class="hover-text mt-4 text-sm text-slate-300">데이터 기반 맞춤형 건기식 (클릭 상세)</p>
         </div>
 
-        <div id="future" class="card bg-slate-800/50 p-6 border border-slate-700 rounded-xl cursor-pointer hover:border-amber-500 transition-all" onclick="openModal('life1')">
+        <div class="card bg-slate-800/50 p-6 border border-slate-700 rounded-xl cursor-pointer hover:border-amber-500 transition-all" onclick="openModal('life1')">
             <span class="text-xs font-bold text-amber-400 uppercase">Future</span>
             <h3 class="text-xl font-bold mt-2">군 복무 전문성 심화</h3>
-            <p class="hover-text mt-4 text-sm text-slate-300 italic">"중단 없는 커리어 로드맵" (상세보기)</p>
+            <p class="hover-text mt-4 text-sm text-slate-300">경력 단절 없는 군 생활 (클릭 상세)</p>
         </div>
 
-        <div id="risk" class="card bg-slate-800/50 p-6 border border-slate-700 rounded-xl cursor-pointer hover:border-sky-500 transition-all" onclick="openModal('risk1')">
+        <div class="card bg-slate-800/50 p-6 border border-slate-700 rounded-xl cursor-pointer hover:border-sky-500 transition-all" onclick="openModal('risk1')">
             <span class="text-xs font-bold text-sky-400 uppercase">Risk Care</span>
             <h3 class="text-xl font-bold mt-2">공정계약 & 보안 지원</h3>
-            <p class="hover-text mt-4 text-sm text-slate-300 italic">"오너를 위한 법률/보안 방어막" (상세보기)</p>
+            <p class="hover-text mt-4 text-sm text-slate-300">AI를 통한 법률/보안 방어 (클릭 상세)</p>
         </div>
     </main>
 
@@ -94,37 +77,37 @@
             edu1: {
                 title: "AI 연구 동료 활용",
                 original: "“수학·물리학·화학·생명과학 등 모든 기초 과학 분야에서 AI와의 융합을 통해 새로운 혁신의 길이 열리고 있다. ‘AI 연구 동료’는 연구자의 가설 생성·실험 설계·데이터 분석·결과 보고 등 연구 전 과정을 지원하는 통합형 과학 도구이다.”",
-                summary: "기초 과학 지식의 공백을 AI로 보완하여 연구 효율성을 극대화합니다. 오너로서 기술적 복잡함에 매몰되지 않고 혁신적인 제품 기획에 집중할 수 있는 전략입니다."
+                summary: "동훈 님의 수학/화학 기초 공백을 메워주는 핵심 파트너입니다. 복잡한 수식이나 분자 구조 분석은 AI에게 맡기고, 오너로서의 창의적 기획에만 집중할 수 있게 합니다."
             },
             edu2: {
                 title: "과학 AI 파운데이션 모델",
                 original: "“바이오·재료·화학 분야의 난제를 해결하는 한국형 ‘과학 파운데이션 모델’을 국가 과학 인프라로 구축하여 신소재 연구에 적용함으로써 혁신을 촉발한다.”",
-                summary: "국가급 AI 인프라를 활용하여 신약 성분이나 화장품 원료 배합의 결과를 예측합니다. 자본이 제한적인 청년 창업 단계에서 연구 비용과 시간을 획기적으로 단축할 수 있습니다."
+                summary: "정부가 구축한 인프라를 통해 값비싼 실험 장비 없이도 가상 환경에서 성분 배합 결과를 예측할 수 있습니다. 전공 공부의 한계를 기술로 돌파하는 전략입니다."
             },
             biz1: {
                 title: "컴퓨팅 자원 바우처 지원",
                 original: "“AI 창업 기업과 중소기업을 대상으로 고성능 컴퓨팅 자원(GPU 등) 활용 바우처를 제공하여, 인프라 구축 비용 부담 없이 서비스를 개발할 수 있도록 지원 규모를 확대한다.”",
-                summary: "초기 AI 모델 학습에 필요한 고가의 서버 자원을 국가 바우처로 해결합니다. 인프라 구축 비용을 절감하여 서비스 고도화와 마케팅에 자원을 집중 투자할 수 있습니다."
+                summary: "초기 창업 시 가장 큰 비용인 서버 구축비를 정부가 대신 내줍니다. 2026년부터 확대되는 이 바우처를 통해 고성능 AI 헬스케어 서비스를 자본금 걱정 없이 개발할 수 있습니다."
             },
             biz2: {
                 title: "AI 신뢰성 인증 및 컨설팅",
                 original: "“중소기업이 개발한 AI 제품의 신뢰성을 보장하기 위해 ‘AI 신뢰성 인증 제도’를 활성화하고, 인증 획득에 필요한 비용과 컨설팅을 지원한다.”",
-                summary: "독자적으로 개발한 맞춤형 건기식/화장품 알고리즘의 정확성을 정부로부터 인증받습니다. 이는 고객 신뢰 확보 및 글로벌 시장 진출 시 강력한 마케팅 수단이 됩니다."
+                summary: "신생 브랜드의 최대 약점인 '신뢰도'를 국가 인증으로 해결합니다. 동훈 님의 제품이 AI 기반으로 정확하게 분석되었다는 공신력을 얻어 대기업과 당당히 경쟁할 수 있습니다."
             },
             biz3: {
                 title: "보건의료 데이터 활용 플랫폼",
                 original: "“보건의료 전 과정을 포함하는 시계열 진료데이터와 공공데이터, 개인 유래 건강 데이터의 결합이 필수적이므로 보건의료 빅데이터 플랫폼 활용 방안을 마련한다.”",
-                summary: "임상 및 공공 데이터를 분석하여 특정 질환 예방이나 피부 타입별 최적 레시피를 도출합니다. 데이터에 기반한 과학적 근거를 바탕으로 프리미엄 제품 라인을 구축합니다."
+                summary: "단순한 영양제가 아니라 실제 데이터에 근거한 맞춤형 건기식을 기획할 수 있는 자산입니다. '26년 1분기 개방되는 데이터를 선점하여 독보적인 제품을 개발하세요."
             },
             life1: {
                 title: "군 복무 전문성 심화 기회",
                 original: "“군 복무가 경력 단절이 아닌 전문성 심화의 기회가 되도록 국방 AI 교육과정 운영 대학 확대, 국방 AI 대학원 지정 등을 통해 고급 AI 인재를 양성한다.”",
-                summary: "입대 시기에도 AI 역량을 단절 없이 강화합니다. 국방 AI 인재 양성 프로그램을 활용하여 전역 후 즉시 사업을 재개하거나 고도화할 수 있는 연속성을 확보합니다."
+                summary: "군대 가는 시간이 아깝지 않게 됩니다. 국방부의 AI 특무나 교육 과정을 통해 군 생활 중에도 제약 AI 역량을 쌓아, 전역 후 바로 창업 시장에 복귀할 수 있는 발판을 마련합니다."
             },
             risk1: {
                 title: "보안 솔루션 및 공정계약 지원",
                 original: "“보안 솔루션 구독료를 지원하고, ‘하도급계약 공정화 지원 AI 플랫폼’을 통해 하도급계약서 초안 작성과 불공정 조항 탐지를 지원한다.”",
-                summary: "핵심 레시피 및 기술 보안을 강화하고, 대외 계약 시 발생할 수 있는 독소 조항을 AI로 필터링합니다. 법률·보안 전문 인력이 부족한 스타트업의 오너 리스크를 원천 차단합니다."
+                summary: "초보 사장님이 겪기 쉬운 사기 계약과 기술 유출을 막아줍니다. AI가 계약서의 독소 조항을 찾아내고, 소중한 제품 레시피를 보안 바우처로 안전하게 지켜줍니다."
             }
         };
 
@@ -138,7 +121,7 @@
                     <p class="text-slate-200 italic leading-relaxed text-lg">${item.original}</p>
                 </div>
                 <div class="p-5 bg-sky-900/20 rounded-xl border-l-4 border-sky-500">
-                    <p class="text-sky-400 text-xs mb-3 uppercase tracking-widest font-bold">AI 요약: 동훈 님을 위한 맞춤 전략</p>
+                    <p class="text-sky-400 text-xs mb-3 uppercase tracking-widest font-bold">AI 요약: 동훈 님을 위한 청년 창업 전략</p>
                     <p class="text-slate-100 text-xl font-medium leading-relaxed">${item.summary}</p>
                 </div>
             `;
@@ -149,13 +132,6 @@
         function closeModal() {
             document.getElementById('modal').style.display = 'none';
             document.body.style.overflow = 'auto';
-        }
-
-        function scrollToCategory(id) {
-            const el = document.getElementById(id);
-            el.scrollIntoView({ behavior: 'smooth' });
-            el.classList.add('ring-4', 'ring-sky-500', 'ring-opacity-50');
-            setTimeout(() => el.classList.remove('ring-4', 'ring-sky-500', 'ring-opacity-50'), 2000);
         }
 
         window.onclick = function(event) {
