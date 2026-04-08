@@ -3,105 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>권동훈: 제약 AI 비전 맵</title>
+    <title>권동훈 제약 AI 포트폴리오 | 학업 & 비전 통합 로드맵</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&display=swap');
-        body { font-family: 'Pretendard', sans-serif; background-color: #020617; color: #e2e8f0; margin: 0; overflow-x: hidden; }
+        body { font-family: 'Pretendard', sans-serif; background-color: #020617; color: #e2e8f0; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
         #canvas-container { width: 100%; height: 55vh; background: #020617; position: relative; border-bottom: 1px solid #1e293b; touch-action: none; }
-        .detail-section { padding: 30px; max-width: 900px; margin: 0 auto; min-height: 45vh; }
-        .info-card { background: #0f172a; border: 1px solid #38bdf8; border-radius: 16px; padding: 25px; display: none; animation: fadeIn 0.4s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .welcome-msg { text-align: center; color: #94a3b8; margin-top: 40px; border: 1px dashed #334155; padding: 30px; border-radius: 15px; }
+        .detail-section { padding: 40px 20px; max-width: 1000px; margin: 0 auto; min-height: 45vh; }
+        .info-card { background: #0f172a; border: 1px solid #38bdf8; border-radius: 16px; padding: 30px; display: none; animation: fadeIn 0.4s ease; box-shadow: 0 10px 40px rgba(56, 189, 248, 0.1); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .ability-tag { font-size: 11px; font-weight: bold; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-right: 5px; margin-bottom: 5px; }
+        .course-card { background: #0f172a; border: 1px solid #334155; transition: all 0.3s ease; }
+        .course-card:hover { border-color: #38bdf8; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(56, 189, 248, 0.1); }
+        .nav-link { color: #94a3b8; transition: color 0.3s; text-sm: font-medium; }
+        .nav-link:hover { color: #38bdf8; }
     </style>
 </head>
 <body>
 
-    <header class="p-6 text-center border-b border-slate-800 bg-slate-900/50">
-        <h1 class="text-2xl font-bold text-sky-400">Kwon Dong-Hoon: Pharma AI Vision</h1>
-        <p class="text-slate-500 text-xs mt-1 tracking-widest uppercase italic">National AI Action Plan 2026-2028 based Roadmap</p>
+    <nav class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-sm border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#" class="text-xl font-bold text-sky-400">KwonDongHoon.vision</a>
+            <div class="flex gap-6">
+                <a href="#vision" class="nav-link">비전 맵</a>
+                <a href="#curriculum" class="nav-link">학과 커리큘럼</a>
+                <a href="#courses" class="nav-link">주요 과목</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="py-16 bg-slate-900/40 border-b border-slate-800 text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <span class="text-sky-400 font-bold text-sm tracking-widest uppercase">Department of Pharmaceutical Engineering</span>
+            <h1 class="text-4xl font-bold text-white mt-3 mb-5 leading-tight">실무 중심의 제약 리더, <br>국가 AI 정책을 만나다</h1>
+            <p class="text-slate-400 leading-relaxed text-lg">탄탄한 전공 지식을 바탕으로 국가 AI 전략을 융합하여, <br>미래 제약-바이오 산업을 이끌어갈 청년 오너의 포트폴리오입니다.</p>
+        </div>
     </header>
 
-    <div id="canvas-container"></div>
-
-    <div class="detail-section">
-        <div id="welcome" class="welcome-msg">
-            <p class="text-lg mb-2">💡 마인드맵의 각 노드를 클릭해 주세요.</p>
-            <p class="text-sm font-normal text-slate-500 italic">교수님, 각 분야를 클릭하시면 국가 행동계획 원문과 <br>제약공학과 권동훈의 맞춤형 창업 전략을 확인하실 수 있습니다.</p>
-        </div>
-
-        <div id="info-card" class="info-card">
-            <div id="info-tag" class="inline-block px-3 py-1 rounded-full text-xs font-bold mb-4"></div>
-            <h2 id="info-title" class="text-2xl font-bold text-sky-400 mb-6"></h2>
-            
-            <div class="mb-8 p-5 bg-slate-900/80 rounded-xl border-l-4 border-slate-600">
-                <p class="text-slate-500 text-xs mb-3 font-bold uppercase tracking-widest">발췌 원문 (Original Text)</p>
-                <p id="info-original" class="text-slate-300 italic leading-relaxed text-base"></p>
+    <section id="vision">
+        <div id="canvas-container"></div>
+        <div class="detail-section">
+            <div id="welcome" class="text-center color-#94a3b8 mt-10 p-8 border border-dashed border-slate-800 rounded-2xl">
+                <p class="text-lg mb-2">💡 마인드맵의 각 노드를 클릭해 주세요.</p>
+                <p class="text-sm font-normal text-slate-500 italic">교수님, 각 분야를 클릭하시면 국가 행동계획 원문과 <br>제약공학과 권동훈의 맞춤형 창업 전략을 확인하실 수 있습니다.</p>
             </div>
-            
-            <div class="p-5 bg-sky-900/30 rounded-xl border-l-4 border-sky-500">
-                <p class="text-sky-400 text-xs mb-3 font-bold uppercase tracking-widest">AI 요약: 권동훈을 위한 맞춤 전략</p>
-                <p id="info-summary" class="text-slate-100 text-lg leading-relaxed font-medium"></p>
+            <div id="info-card" class="info-card">
+                <div id="info-tag" class="inline-block px-3 py-1 rounded-full text-xs font-bold mb-4"></div>
+                <h2 id="info-title" class="text-2xl font-bold text-sky-400 mb-6"></h2>
+                <div class="mb-8 p-5 bg-slate-900/80 rounded-xl border-l-4 border-slate-600">
+                    <p class="text-slate-500 text-xs mb-3 font-bold uppercase tracking-widest">발췌 원문 (Original Text)</p>
+                    <p id="info-original" class="text-slate-300 italic leading-relaxed text-base"></p>
+                </div>
+                <div class="p-5 bg-sky-900/30 rounded-xl border-l-4 border-sky-500">
+                    <p class="text-sky-400 text-xs mb-3 font-bold uppercase tracking-widest">AI 요약: 권동훈을 위한 맞춤 전략</p>
+                    <p id="info-summary" class="text-slate-100 text-lg leading-relaxed font-medium"></p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <section id="curriculum" class="py-20 bg-slate-900/30 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 space-y-20">
+            <div>
+                <h2 class="text-2xl font-bold text-white mb-8 flex items-center"><span class="w-1 h-7 bg-sky-500 rounded-full mr-3"></span>01. 교육 과정 체계</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center text-sm">
+                    <div class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700">🔬 제약공학 원리 습득</div>
+                    <div class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700">🧬 바이오헬스-AI 융합</div>
+                    <div class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700">🏭 산업실무 및 GMP 규정</div>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="text-2xl font-bold text-white mb-8 flex items-center"><span class="w-1 h-7 bg-sky-500 rounded-full mr-3"></span>02. 전공능력 기반 교과목 매핑</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-8 text-sm leading-relaxed">
+                    <div class="p-6 bg-slate-950 rounded-2xl border border-slate-800">
+                        <h4 class="text-base font-semibold text-rose-400 mb-4">바이오기반기초전공 (Rose)</h4>
+                        <span>기초생물학, 제약공학개론, 응용생물학, 천연물의약품학, 생화학, 미생물학, 제약유전공학, 제약생물공학, 항생물질학, 항생물질학실험</span>
+                    </div>
+                    <div class="p-6 bg-slate-950 rounded-2xl border border-slate-800">
+                        <h4 class="text-base font-semibold text-emerald-400 mb-4">바이오산업간 융합 (Emerald)</h4>
+                        <span>유기화학, 병원미생물학, 약리학, 위생학, 기능성식품학, 제약공학종합설계, 진로지도</span>
+                    </div>
+                    <div class="p-6 bg-slate-950 rounded-2xl border border-slate-800">
+                        <h4 class="text-base font-semibold text-sky-400 mb-4">품질관리 (Sky)</h4>
+                        <span>약품분석화학실험, 약품분석화학, 약전, 기기분석 및 실험, 밸리데이션, 향장화장품학, 발효공학</span>
+                    </div>
+                    <div class="p-6 bg-slate-950 rounded-2xl border border-slate-800">
+                        <h4 class="text-base font-semibold text-amber-400 mb-4">제조관리 (Amber)</h4>
+                        <span>의약법규, 제제공학, 제제공학실험, GMP, 약품전달공학</span>
+                    </div>
+                    <div class="p-6 bg-slate-950 rounded-2xl border border-slate-800 lg:col-span-2">
+                        <h4 class="text-base font-semibold text-slate-300 mb-4">연계산업 실무 (Slate)</h4>
+                        <span>미생물학실험, 제약유전공학실험, 제약생물공학실험, 향장화장품학실험, 세미나</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="courses" class="py-20 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-2xl font-bold text-white mb-10 flex items-center"><span class="w-1 h-7 bg-sky-500 rounded-full mr-3"></span>03. 주요 교과목 상세 소개</h2>
+            <div id="course-list" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                </div>
+        </div>
+    </section>
+
+    <footer class="py-8 bg-slate-950 border-t border-slate-800 text-center text-slate-600 text-xs">
+        <p>&copy; 2024 Kwon Dong-Hoon. Curriculum data source: Department of Pharmaceutical Engineering.</p>
+        <p class="mt-1">첨부된 이미지는 학년별 교육과정표 원본입니다.</p>
+    </footer>
 
 <script>
-let nodes = [];
-let connections = [];
-
-// 내용 풍부화 버전 데이터
-const nodeData = {
-    'edu1': { 
-        tag: "학업 보완 (Academic)", col: "#fb7185", title: "AI 연구 동료 활용", 
-        original: "“수학·물리학·화학·생명과학 등 모든 기초 과학 분야에서 AI와의 융합을 통해 새로운 혁신의 길이 열리고 있다. ‘AI 연구 동료’는 연구자의 가설 생성·실험 설계·데이터 분석·결과 보고 등 연구 전 과정을 지원하는 통합형 과학 도구로서, 연구자의 생산성과 창의성을 극대화할 수 있는 잠재력을 지닌다.”", 
-        summary: "동훈 님의 수학(5~6등급) 및 화학 노베이스 공백을 메워줄 핵심 도구입니다. 복잡한 계산이나 실험 설계는 AI에게 맡기고, 오너로서 아이디어를 기획하고 방향을 설정하는 데 집중할 수 있는 환경을 제공합니다." 
-    },
-    'edu2': { 
-        tag: "학업 보완 (Academic)", col: "#fb7185", title: "과학 AI 파운데이션 모델", 
-        original: "“학문적·산업적 파급력이 높은 바이오·재료·화학 분야의 난제를 해결하는 한국형 ‘과학 파운데이션 모델’을 국가 과학 인프라로 구축한다. 고체·액체상의 모든 물질과 신소재 연구에 적용되어 혁신을 촉발할 수 있다.”", 
-        summary: "정부가 구축하는 국가 인프라를 활용해 직접적인 대규모 실험 없이도 신소재나 약물 성분 배합 결과를 예측할 수 있습니다. 자본이 부족한 초기 창업 시기에 연구 비용을 획기적으로 줄여주는 기술적 돌파구입니다." 
-    },
-    'biz1': { 
-        tag: "창업 지원 (Support)", col: "#34d399", title: "컴퓨팅 자원 바우처", 
-        original: "“AI 창업 기업과 중소기업을 대상으로 고성능 컴퓨팅 자원(GPU 등) 활용 바우처를 제공하여, 인프라 구축 비용 부담 없이 AI 모델을 학습하고 서비스를 개발할 수 있도록 지원 규모를 확대한다.”", 
-        summary: "제약 AI나 맞춤형 화장품 알고리즘 개발에 필수적인 고성능 서버를 국가 지원으로 무료 활용합니다. 인프라 구축 비용을 0원에 가깝게 줄여 초기 자본 리스크를 최소화할 수 있습니다." 
-    },
-    'biz2': { 
-        tag: "창업 지원 (Support)", col: "#34d399", title: "AI 신뢰성 인증 제도", 
-        original: "“중소기업이 개발한 AI 기반 제품과 서비스의 신뢰성을 보장하기 위해 ‘AI 신뢰성 인증 제도’를 활성화하고, 인증 획득에 필요한 비용과 컨설팅을 지원한다.”", 
-        summary: "동훈 님의 브랜드가 대기업과 경쟁할 수 있도록 '국가 공인 신뢰도'를 확보하는 전략입니다. AI 분석 결과의 정확성을 정부가 인증해주므로 초기 고객의 신뢰를 단숨에 얻을 수 있습니다." 
-    },
-    'biz3': { 
-        tag: "창업 전략 (Strategy)", col: "#34d399", title: "보건의료 데이터 활용", 
-        original: "“특화 파운데이션 AI모델 기반의 기술개발은 대량, 양질의 보건의료 전 과정을 포함하는 시계열 진료데이터와 공공데이터, 개인 유래 건강 데이터의 결합이 필수적이므로 보건의료 빅데이터 플랫폼 활용 방안을 ’26년 1분기까지 마련한다.”", 
-        summary: "실제 임상/진료 데이터를 바탕으로 특정 타겟(수험생, 노년층 등)에 딱 맞는 효능 중심의 제품 기획이 가능해집니다. 데이터 기반의 과학적 근거를 가진 건강기능식품 레시피를 개발합니다." 
-    },
-    'life1': { 
-        tag: "미래/생활 (Future)", col: "#fbbf24", title: "군 복무 전문성 심화", 
-        original: "“군 복무가 경력 단절이 아닌 전문성 심화의 기회가 되도록 설계함으로써... 국방 AI 교육과정 운영 대학 확대, 국방 AI 대학원 지정... 전역 후 민간 기업이나 국가 연구기관의 핵심 인력으로 활약할 고급 AI 인재를 양성한다.”", 
-        summary: "군 생활을 제약 AI 역량 강화의 기회로 삼습니다. 국방부의 전문 AI 교육을 이수하여 전공 지식을 유지하고, 전역 후 바로 창업 시장의 핵심 인재로 복귀할 수 있는 연속성을 확보합니다." 
-    },
-    'risk1': { 
-        tag: "오너 리스크 (Security)", col: "#0ea5e9", title: "보안 및 공정계약 지원", 
-        original: "“중소기업 대상 AI 보안 솔루션 구독료 지원 사업을 추진하고, ‘하도급계약 공정화 지원 AI 플랫폼’을 구축해 하도급계약서 초안 작성과 불공정 조항 탐지를 지원한다.”", 
-        summary: "비싼 법률 자문 비용 없이도 AI가 계약서의 독소 조항을 잡아내어 동훈 님의 회사를 보호합니다. 또한 보안 바우처를 통해 소중한 제품 레시피와 기술 유출을 원천 차단합니다." 
-    }
+// 데이터統合 (Vision + Curriculum)
+const visionData = {
+    'edu1': { tag: "학업 보완", col: "#fb7185", title: "AI 연구 동료 활용", original: "“...‘AI 연구 동료’는 연구 전 과정을 지원하는 통합형 과학 도구로서...”", summary: "수학/화학 노베이스 공백을 기술로 보완합니다. 복잡한 계산이나 실험 설계는 AI에게 맡기고 오너로서 아이디어에 집중합니다." },
+    'edu2': { tag: "학업 보완", col: "#fb7185", title: "과학 AI 파운데이션 모델", original: "“...한국형 ‘과학 파운데이션 모델’을 국가 과학 인프라로 구축한다...”", summary: "국가 인프라를 활용해 신소재나 약물 성분 배합 결과를 예측, 초기 연구 비용을 획기적으로 줄여주는 기술적 돌파구입니다." },
+    'biz1': { tag: "창업 지원", col: "#34d399", title: "컴퓨팅 자원 바우처", original: "“...고성능 컴퓨팅 자원 활용 바우처를 제공하여 인프라 구축 비용 부담 없이 서비스를 개발 하도록...”", summary: "제약 AI算法 개발에 필수적인 고성능 서버를 무료 활용합니다. 인프라 구축 비용을 절감하여 초기 자본 리스크를 최소화합니다." },
+    'biz2': { tag: "창업 지원", col: "#34d399", title: "AI 신뢰성 인증 제도", original: "“...‘AI 신뢰성 인증 제도’를 활성화하고 인증 획득 비용과 컨설팅을 지원한다.”", summary: "신생 브랜드의 알고리즘 정확성을 국가가 보증해주는 인증 제도로 초기 고객 신뢰를 단숨에 얻는 전략입니다." },
+    'biz3': { tag: "창업 전략", col: "#34d399", title: "보건의료 데이터 활용", original: "“...보건의료 빅데이터 플랫폼 활용 방안을 마련한다.”", summary: "실제 임상/진료 데이터를 바탕으로 타겟 타겟에 딱 맞는 효능 중심의 제품 기획이 가능해집니다." },
+    'life1': { tag: "미래/생활", col: "#fbbf24", title: "군 복무 전문성 심화", original: "“...국방 AI 교육과정 운영 대학 확대... 전역 후 고급 AI 인재를 양성한다.”", summary: "군 생활을 제약 AI 역량 강화의 기회로 삼습니다. 전문 AI 교육을 이수하여 경력 연속성을 확보합니다." },
+    'risk1': { tag: "오너 리스크", col: "#0ea5e9", title: "보안 및 공정계약 지원", original: "“...‘하도급계약 공정화 지원 AI 플랫폼’... 불공정 조항 탐지를 지원한다.”", summary: "AI가 계약서 독소 조항을 잡아내고 보안 솔루션을 지원하여 회사의 핵심 자산(레시피 등)을 보호합니다." }
 };
 
+const coursesData = [
+    { tag: "융합", col: "#10b981", title: "위생학 (Hygiene)", desc: "식품위생 관련 미생물, 유해물질, 환경오염물질에 대하여 학습하고 인류건강 증진 기초지식을 습득합니다." },
+    { tag: "융합/캡스톤", col: "#10b981", title: "제약공학 종합설계 (Capstone)", desc: "1∼3학년 전공이론을 바탕으로 스스로 팀별 과제를 선정·수행하여 창의력과 실무 능력을 배양합니다." },
+    { tag: "품질관리", col: "#38bdf8", title: "기기분석 및 실험 (Instrument Lab.)", desc: "제약 실무 기기 원리, 분석방법을 실험을 통해 학습하여 품질관리 실무 기기 분석 능력을 키웁니다." },
+    { tag: "제조관리/실무", col: "#fbbf24", title: "GMP (Good Manufacturing Practices)", desc: "의약품, 화장품, 건기식의 제조 및 품질관리기준에 대해 학습하여 산업체 진출 필수 실무 능력을 배웁니다." },
+    { tag: "융합", col: "#10b981", title: "기능성식품학 (Functional Food)", desc: "식품 중 유용성분과 기능성소재, 그 소재를 이용한 제품에 대해 학습하고 새로운 기능성식품 개발에 관하여 토론합니다." },
+    { tag: "품질관리", col: "#38bdf8", title: "향장화장품학 (Cosmetic Science)", desc: "피부구조 이론, 화장품 성분, 제조원리, 화장품에 대한 안전성과 안정성, 부작용 등에 대하여 배웁니다." },
+    { tag: "제조관리", col: "#fbbf24", title: "약물전달공학 (Drug Delivery Eng.)", desc: "제제공학 지식을 기반으로 약물의 생체이용률 등을 개선하는 새로운 약물전달시스템(DDS)을 개발할 지식을 습득합니다." },
+    { tag: "실무", col: "#94a3b8", title: "향장화장품학실험 (Cosmetic Science Lab.)", desc: "제품별 제조방법과 공정, 특성을 이해하고 학생들이 직접 제조해봄으로써 현장에서 적용가능 할 전문지식을 배양합니다." },
+    { tag: "품질관리/QA", col: "#38bdf8", title: "밸리데이션 (Validation)", desc: "의약품 제조 및 품질관리기준에서 의무화 된 밸리데이션에 대해 학습하여 품질보증(QA) 분야 실무 능력을 배웁니다." },
+    { tag: "커리어", col: "#38bdf8", title: "진로지도 & 세미나 (Counselling & Seminar)", desc: "취업준비 계획 수립과 취업역량 강화, 전문 발표요령 숙지 등을 통해 취업 및 전문성 발표 능력을 키웁니다." }
+];
+
+// p5.js 마인드맵 렌더링 (이전 내용 그대로)
+let nodes = [];
+let connections = [];
 function setup() {
     let canvas = createCanvas(windowWidth, windowHeight * 0.55);
     canvas.parent('canvas-container');
-    
-    // 중앙: 제약공학과 권동훈 (명칭 수정)
     let center = new Node(width/2, height/2, "제약공학과\n권동훈", "#38bdf8", 90, null);
     nodes.push(center);
-
-    // 노드 위치를 화면 안쪽으로 더 좁혀서 가림 방지 (Margin 확보)
-    let mw = width * 0.15; // 좌우 마진
-    let mh = height * 0.1; // 상하 마진
-
+    let mw = width * 0.15; let mh = height * 0.1;
     nodes.push(new Node(mw + 50, height/2 - 50, "AI 연구동료", "#fb7185", 65, 'edu1'));
     nodes.push(new Node(width/2 - 100, mh + 50, "과학 AI 모델", "#fb7185", 65, 'edu2'));
     nodes.push(new Node(width - mw - 50, height/2 - 100, "컴퓨팅 지원", "#34d399", 65, 'biz1'));
@@ -109,71 +156,52 @@ function setup() {
     nodes.push(new Node(width/2 + 150, height - mh - 80, "의료 데이터", "#34d399", 65, 'biz3'));
     nodes.push(new Node(mw + 80, height/2 + 100, "군 전문성", "#fbbf24", 65, 'life1'));
     nodes.push(new Node(width/2, height - mh - 30, "보안/계약", "#0ea5e9", 65, 'risk1'));
-
     for(let i=1; i<nodes.length; i++) connections.push([center, nodes[i]]);
 }
-
 function draw() {
-    background(2, 6, 23);
-    
-    // 연결선
-    stroke(30, 41, 59); strokeWeight(2);
+    background(2, 6, 23); stroke(30, 41, 59); strokeWeight(2);
     for(let c of connections) line(c[0].x, c[0].y, c[1].x, c[1].y);
-    
     for(let n of nodes) { n.update(); n.display(); }
 }
-
 class Node {
     constructor(x, y, label, col, sz, dataKey) {
         this.x = x; this.y = y; this.label = label; this.col = col; this.sz = sz; this.dataKey = dataKey;
-        this.baseX = x; this.baseY = y;
-        this.angle = random(TWO_PI);
+        this.baseX = x; this.baseY = y; this.angle = random(TWO_PI);
     }
-    update() {
-        // 화면 밖으로 나가지 않게 움직임 범위를 base 위치 근처로 제한
-        this.x = this.baseX + sin(frameCount * 0.02 + this.angle) * 10;
-        this.y = this.baseY + cos(frameCount * 0.02 + this.angle) * 10;
-    }
+    update() { this.x = this.baseX + sin(frameCount * 0.02 + this.angle) * 10; this.y = this.baseY + cos(frameCount * 0.02 + this.angle) * 10; }
     display() {
         let d = dist(mouseX, mouseY, this.x, this.y);
         let touchD = (touches.length > 0) ? dist(touches[0].x, touches[0].y, this.x, this.y) : 999;
         let isHover = d < this.sz/2 || touchD < this.sz/2;
-        
-        if(isHover) {
-            cursor(HAND);
-            fill(this.col); stroke(255, 150); strokeWeight(3);
-            if(mouseIsPressed || touches.length > 0) {
-                if(this.dataKey) showInfo(this.dataKey);
-            }
-        } else {
-            noStroke(); fill(this.col);
-        }
-        
+        if(isHover) { cursor(HAND); fill(this.col); stroke(255, 150); strokeWeight(3); if(mouseIsPressed && this.dataKey) showVisionInfo(this.dataKey); }
+        else { noStroke(); fill(this.col); }
         ellipse(this.x, this.y, this.sz, this.sz);
-        fill(255); noStroke(); textSize(this.sz*0.22); textAlign(CENTER, CENTER); textStyle(BOLD);
-        text(this.label, this.x, this.y);
+        fill(255); noStroke(); textSize(this.sz*0.22); textAlign(CENTER, CENTER); textStyle(BOLD); text(this.label, this.x, this.y);
     }
 }
-
-function showInfo(key) {
-    const item = nodeData[key];
+function showVisionInfo(key) {
+    const item = visionData[key];
     document.getElementById('welcome').style.display = 'none';
     document.getElementById('info-card').style.display = 'block';
-    
-    const tagEl = document.getElementById('info-tag');
-    tagEl.innerText = item.tag;
-    tagEl.style.backgroundColor = item.col;
-    tagEl.style.color = "#020617";
-    
+    const tagEl = document.getElementById('info-tag'); tagEl.innerText = item.tag; tagEl.style.backgroundColor = item.col; tagEl.style.color = "#020617";
     document.getElementById('info-title').innerText = item.title;
     document.getElementById('info-original').innerText = item.original;
     document.getElementById('info-summary').innerText = item.summary;
-    
-    // 클릭 시 해당 영역으로 부드럽게 스크롤
     document.getElementById('info-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
-
 function windowResized() { resizeCanvas(windowWidth, windowHeight * 0.55); }
+
+// 주요 교과목 카드 생성 함수
+const courseListEl = document.getElementById('course-list');
+coursesData.forEach(item => {
+    courseListEl.innerHTML += `
+        <div class="course-card p-6 rounded-2xl">
+            <span class="ability-tag" style="background-color:${item.col}20; color:${item.col}">${item.tag}</span>
+            <h3 class="text-xl font-bold text-white mt-1 mb-3">${item.title}</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">${item.desc}</p>
+        </div>
+    `;
+});
 </script>
 </body>
 </html>
